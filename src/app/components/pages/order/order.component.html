@@ -1,0 +1,127 @@
+<section class="order py-4 overflow-hidden position-relative">
+  <section class="container-lg">
+    <section class="block-form">
+      <h2 class="text-center mb-4 fs-2 fw-bold mb-5">Сделать заказ</h2>
+      <form [formGroup]="orderForm" novalidate class="row px-md-5 w-75 m-auto">
+
+        <div class="mb-3 col-md-12 text-center">
+          <label for="product" class="form-label">Товар</label>
+          <!-- readonly —  делает поле доступным только для чтения(нельзя редактировать)-->
+          <!-- tabindex="-1" — исключает элемент из последовательности табуляции,-->
+          <input formControlName="product" readonly tabindex="-1" [style]="{'pointer-events': 'none'}"
+                 type="text" class="form-control w-50 m-auto text-center border-0 fw-bold fs-4" id="product">
+        </div>
+
+        <div class="mb-3 col-md-6 position-relative">
+          <label for="first_name" class="form-label">Имя</label>
+          <input formControlName="name" type="text" class="form-control" id="first_name">
+          <div class="w-100 error-text text-danger small ps-2"
+               *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)">
+
+            <span *ngIf="firstName?.errors?.['required']">
+              обязательно для заполнения.
+            </span>
+
+            <span *ngIf="firstName?.errors?.['pattern']">
+              должно содержать только буквы
+            </span>
+
+          </div>
+        </div>
+
+        <div class="mb-3 col-md-6 position-relative">
+          <label for="last_name" class="form-label">Фамилия</label>
+          <input formControlName="last_name" type="text" class="form-control" id="last_name">
+          <div class="w-100 error-text text-danger small ps-2"
+               *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)">
+
+            <span *ngIf="lastName?.errors?.['required']">
+              обязательно для заполнения.
+            </span>
+
+            <span *ngIf="lastName?.errors?.['pattern']">
+              должно содержать только буквы
+            </span>
+
+          </div>
+        </div>
+
+        <div class="mb-3 col-md-4 position-relative">
+          <label for="phone" class="form-label">Телефон</label>
+          <input formControlName="phone" type="text" class="form-control" id="phone">
+          <div class="w-100 error-text text-danger small ps-2"
+               *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)">
+
+            <span *ngIf="phone?.errors?.['required']">
+              обязательно для заполнения.
+            </span>
+
+            <span *ngIf="phone?.errors?.['pattern']">
+              неверный формат
+            </span>
+
+          </div>
+        </div>
+
+        <div class="mb-3 col-md-4 position-relative">
+          <label for="country" class="form-label">Страна</label>
+          <input formControlName="country" readonly tabindex="-1" [style]="{'pointer-events': 'none'}" type="text" class="form-control" id="country">
+          <small class="text-body-secondary ps-2">только для клиентов из России</small>
+        </div>
+
+        <div class="mb-3 col-md-4 position-relative">
+          <label for="index" class="form-label">Индекс</label>
+          <input formControlName="zip" placeholder="формат: xxx-xxx" type="text" class="form-control" id="index">
+          <div class="w-100 error-text text-danger small ps-2"
+               *ngIf="zip?.invalid && (zip?.dirty || zip?.touched)">
+
+            <span *ngIf="zip?.errors?.['required']">
+              обязательно для заполнения.
+            </span>
+
+            <span *ngIf="zip?.errors?.['pattern']">
+              неверный формат
+            </span>
+
+          </div>
+        </div>
+
+        <div class="mb-3 col-md-12 position-relative">
+          <label for="address" class="form-label">Адрес</label>
+          <input formControlName="address" type="text" class="form-control" id="address">
+          <div class="w-100 error-text text-danger small ps-2"
+               *ngIf="address?.invalid && (address?.dirty || address?.touched)">
+
+            <span *ngIf="address?.errors?.['required']">
+              обязательно для заполнения.
+            </span>
+
+            <span *ngIf="address?.errors?.['minlength']">
+              введите корректный адресс
+            </span>
+
+          </div>
+        </div>
+
+        <div class="mb-3 col-md-12">
+          <label for="comment" class="form-label">Комментарий к заказу</label>
+          <textarea formControlName="comment" placeholder="Можете оставить комментарий к заказу" class="form-control" id="comment"></textarea>
+        </div>
+
+        <div class="col">
+          <button (click)="sendOrder()" [disabled] = "orderForm.invalid"  type="button" class="hvr-buzz-out btn btn-primary px-5">Отправить</button>
+        </div>
+
+      </form>
+    </section>
+    <p [class.show] = "isSuccess === 1" class="message-text text-success fw-bold h1 w-100 text-center py-5">
+      <span class="d-block">Спасибо за заказ.</span>
+      <span class="d-block">Мы свяжемся с вами в ближайшее время!</span>
+      <span class="d-block">через {{time}} секунд вы попадете в каталог</span>
+    </p>
+    <p [class.show] = "isSuccess === 0" class="message-text text-danger fw-bold h1 w-100 text-center py-5">
+      <span class="d-block">Извените возникла ошибка</span>
+      <span class="d-block">Попробуйте позже или сделайте заказ по телефону</span>
+    </p>
+  </section>
+</section>

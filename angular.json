@@ -5,6 +5,9 @@
   "projects": {
     "tea-sale": {
       "projectType": "application",
+      "i18n": {
+        "sourceLocale": "ru-RU"
+      },
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
@@ -30,6 +33,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -97,5 +101,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

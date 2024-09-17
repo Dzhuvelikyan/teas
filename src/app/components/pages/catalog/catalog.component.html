@@ -1,0 +1,14 @@
+<section class="products py-4">
+  <section class="container">
+    <h2 class="mb-4 text-center fw-bold">{{title}}</h2>
+    <section *ngIf = 'products.length else noProducts' class="products__items row row-cols-1 row-cols-sm-2 row-cols-lg-3">
+
+      <product-card *ngFor="let product of products" [product] = "product"></product-card>
+
+    </section>
+    <ng-template #noProducts>
+      <p>Ничего не найдено</p>
+    </ng-template>
+  </section>
+  <loader *ngIf = "isLoader"></loader>
+</section>

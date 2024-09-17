@@ -1,0 +1,14 @@
+<article class="product__item h-100 p-2">
+  <div class="card h-100">
+    <figure class="card__image">
+      <img src="{{product.image}}" class="card__image-img card-img-top" alt="{{product.title}}">
+    </figure>
+    <div class="card-body">
+      <h5 class="card-title">{{product.title}}</h5>
+      <p class="card-text">{{product.description}}</p>
+      <a [routerLink]="['/product',  product.id]" class="card-btn btn btn-primary align-self-start px-5 hvr-wobble-horizontal">Подробнее</a>
+    </div>
+  </div>
+</article>
+
+<!--[routerLink]="['/product',  product.id]"-->
