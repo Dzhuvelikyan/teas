@@ -22,6 +22,7 @@
     }
     .card-text {
       max-height: 200px;
+      line-height: 130%;
       overflow: auto;
       &::-webkit-scrollbar {
         padding: 4px;

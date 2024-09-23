@@ -24,4 +24,19 @@ body {
   font-family: Arial, sans-serif;
 }
 
+app-component {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  width: 100%;
+  height: 100%;
+
+  & > * {
+    width: 100%;
+  }
+}
+footer-component {
+  align-self: end;
+}
+
 

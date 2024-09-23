@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {map, Observable} from "rxjs";
+import {Observable} from "rxjs";
 import {ProductTeaType} from "../types/product-tea.type";
 import {OrderDataType} from "../types/order-data.type";
 
@@ -10,29 +10,24 @@ import {OrderDataType} from "../types/order-data.type";
 export class ProductsService {
 
   apiUrl: string = 'https://testologia.ru';
+
   constructor(private http: HttpClient) { }
 
-  // getProducts(): Observable<ProductTeaType[]> {//отправка запроса на получение всех товаров
-  //   //запрос нa сервер с помощью HttpClient (observable-объект)
-  //   return this.http.get<ProductTeaType[]>(this.apiUrl);
-  // }
-
-  searchProducts(searchValue: string): Observable<ProductTeaType[]> {//отправка запроса на получение товаров по поиску
-    return this.http.get<ProductTeaType[]>(`${this.apiUrl}/tea?search=${searchValue}`);
-  }
-
-  getProducts(search: string = ''): Observable<ProductTeaType[]> {//отправка запроса на получение всех товаров или получение товаров по поиску
-    const queryParams = search ?  `?search=${search}` : '';
+  //отправка запроса на получение всех товаров или получение товаров по поиску
+  getProducts(searchValue: string = ''): Observable<ProductTeaType[]> {
+    let queryParams = searchValue ?  `?search=${searchValue}` : ``;
     //запрос нa сервер с помощью HttpClient (observable-объект)
     return this.http.get<ProductTeaType[]>(`${this.apiUrl}/tea${queryParams}`);
   }
 
-  getProduct(id: number): Observable<ProductTeaType> {//отправка запроса на получение одного товара
+  //отправка запроса на получение одного товара
+  getProduct(id: number): Observable<ProductTeaType> {
     //запрос нa сервер с помощью HttpClient (observable-объект)
     return this.http.get<ProductTeaType>(`${this.apiUrl}/tea?id=${id}`);
   }
 
-  sendOrder(body: OrderDataType): Observable<{ success: number, message?: string }> {//запроса на отправку заказа
+  //запроса на отправку заказа
+  sendOrder(body: OrderDataType): Observable<{ success: number, message?: string }> {
     return this.http.post<{ success: number, message?: string }>(`https://testologia.ru/order-tea`,body);
   }
 
