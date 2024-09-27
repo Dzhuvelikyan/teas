@@ -5,10 +5,6 @@ import { SearchService } from "../../../services/search.service";
 
 @Component({
   selector: 'search-component',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-  ],
   template: `
     <form [formGroup]="searchForm" class="d-flex" role="search">
       <input formControlName="search" class="form-control me-2" type="search" placeholder="Поиск чая" aria-label="Search">

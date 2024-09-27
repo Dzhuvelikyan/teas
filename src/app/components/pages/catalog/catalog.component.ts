@@ -1,25 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {NgForOf, NgIf} from "@angular/common";
 import {ProductTeaType} from "../../../types/product-tea.type";
 import {ProductsService} from "../../../services/products.service";
-import {Subject, Subscription, tap} from "rxjs";
+import {Subscription, tap} from "rxjs";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {HttpClientModule} from "@angular/common/http";
-import {ProductCardComponent} from "../../common/product-card/product-card.component";
-import {LoaderComponent} from "../../common/loader/loader.component";
 import {SearchService} from "../../../services/search.service";
 
 @Component({
   selector: 'app-catalog',
-  standalone: true,
-  imports: [
-    NgForOf,
-    HttpClientModule,
-    ProductCardComponent,
-    LoaderComponent,
-    NgIf
-  ],
-  providers: [ProductsService, SearchService],
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.scss']
 })

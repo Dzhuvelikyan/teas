@@ -1,16 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {FormBuilder, FormGroup, Validators, ReactiveFormsModule} from "@angular/forms";
-import {CommonModule} from '@angular/common';
-import {HttpClientModule} from "@angular/common/http";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ProductsService} from "../../../services/products.service";
 import {Subscription} from "rxjs";
 
 @Component({
   selector: 'order-component',
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, HttpClientModule,],
-  providers: [ProductsService],
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss']
 })

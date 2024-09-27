@@ -1,23 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Params, Router, RouterLink} from "@angular/router";
-import {HttpClientModule} from "@angular/common/http";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {ProductsService} from "../../../services/products.service";
 import {ProductTeaType} from "../../../types/product-tea.type";
 import {Observable, Subscription, tap} from "rxjs";
-import {CurrencyPipe, NgIf} from "@angular/common";
-import {LoaderComponent} from "../../common/loader/loader.component";
 
 @Component({
   selector: 'product-component',
-  standalone: true,
-  imports: [
-    RouterLink,
-    HttpClientModule,
-    CurrencyPipe,
-    LoaderComponent,
-    NgIf,
-  ],
-  providers: [ProductsService, RouterLink],
   templateUrl: './product.component.html',
 })
 export class ProductComponent implements OnInit, OnDestroy {
