@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {ProductTeaType} from "../types/product-tea.type";
-import {OrderDataType} from "../types/order-data.type";
+import {ProductTeaType} from "../../../types/product-tea.type";
+import {OrderDataType} from "../../../types/order-data.type";
 
 @Injectable({
   providedIn: 'root',

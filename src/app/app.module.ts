@@ -6,39 +6,34 @@ import { AppRoutingModule } from './app-routing.module';  // Импорт мар
 //импортируем локаль для России и регистрируем:
 import { registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
-import {ProductsService} from "./services/products.service";
-import {SearchService} from "./services/search.service";
-import {CatalogComponent} from "./components/pages/catalog/catalog.component";
-import {MainComponent} from "./components/pages/main/main.component";
-import {OrderComponent} from "./components/pages/order/order.component";
-import {ProductComponent} from "./components/pages/product/product.component";
-import {FooterComponent} from "./components/common/footer/footer.component";
-import {HeaderComponent} from "./components/common/header/header.component";
-import {ProductCardComponent} from "./components/common/product-card/product-card.component";
-import {LoaderComponent} from "./components/common/loader/loader.component";
-import {ReactiveFormsModule} from "@angular/forms";
-import {SearchComponent} from "./components/common/search/search.component";
-import {HttpClientModule} from "@angular/common/http";
+import {ProductsService} from "./shared/services/products.service";
+import {SearchService} from "./shared/services/search.service";
+import {CatalogComponent} from "./views/products/catalog/catalog.component";
+import {MainComponent} from "./views/home/main/main.component";
+import {OrderComponent} from "./views/order/order.component";
+import {ProductComponent} from "./views/products/product/product.component";
+import {FooterComponent} from "./shared/components/footer/footer.component";
+import {HeaderComponent} from "./shared/components/header/header.component";
+import {ProductCardComponent} from "./shared/components/product-card/product-card.component";
+import {LoaderComponent} from "./shared/components/loader/loader.component";
+import {SearchComponent} from "./shared/components/search/search.component";
+import {OrderModule} from "./views/order/order.module";
+import {ProductsModule} from "./views/products/products.module";
+import {HomeModule} from "./views/home/home.module";
+import {SharedModule} from "./shared/shared.module";
 registerLocaleData(localeRu);
 
 @NgModule({
   declarations: [// Здесь регистрируем компоненты
     AppComponent,
-    CatalogComponent,
-    MainComponent,
-    OrderComponent,
-    ProductComponent,
-    FooterComponent,
-    HeaderComponent,
-    ProductCardComponent,
-    LoaderComponent,
-    SearchComponent
   ],
   imports: [
+    HomeModule,
+    ProductsModule,
+    OrderModule,
+    SharedModule,
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,// Подключаем модуль маршрутизации
-    HttpClientModule,
   ],
     providers: [// Здесь можно указать глобальные сервисы
       { provide: LOCALE_ID, useValue: 'ru-RU' }, // Устанавливаем локаль на российскую

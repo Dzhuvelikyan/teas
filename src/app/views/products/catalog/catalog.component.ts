@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ProductTeaType} from "../../../types/product-tea.type";
-import {ProductsService} from "../../../services/products.service";
+import {ProductTeaType} from "../../../../types/product-tea.type";
+import {ProductsService} from "../../../shared/services/products.service";
 import {Subscription, tap} from "rxjs";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {SearchService} from "../../../services/search.service";
+import {SearchService} from "../../../shared/services/search.service";
 
 @Component({
   selector: 'app-catalog',

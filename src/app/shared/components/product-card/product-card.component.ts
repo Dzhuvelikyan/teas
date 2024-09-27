@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {ProductTeaType} from "../../../types/product-tea.type";
+import {ProductTeaType} from "../../../../types/product-tea.type";
 
 @Component({
   selector: 'product-card',

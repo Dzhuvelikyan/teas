@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {ProductsService} from "../../../services/products.service";
-import {ProductTeaType} from "../../../types/product-tea.type";
+import {ProductsService} from "../../../shared/services/products.service";
+import {ProductTeaType} from "../../../../types/product-tea.type";
 import {Observable, Subscription, tap} from "rxjs";
 
 @Component({
