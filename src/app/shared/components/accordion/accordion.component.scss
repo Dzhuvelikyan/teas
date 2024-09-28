@@ -1,0 +1,8 @@
+button {
+  &::after {
+    background-image: url("assets/download.svg");
+  }
+  &:not(.collapsed)::after {
+    background-image: url("assets/download.svg");
+  }
+}

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import {Router} from "@angular/router";
 import { SearchService } from "../../services/search.service";
 
@@ -27,18 +27,18 @@ export class SearchComponent {
   }
 
   onSearch(): void {
-    const query = this.searchForm.get('search')?.value;
+    const searchValue = this.searchForm.get('search')?.value;
 
-    // Лог для проверки корректности значения
-    console.log('Отправлен из SearchComponent:', query);
+    // Лог для проверки отправки значения
+    console.log('Отправлен из SearchComponent:', searchValue);
 
     // Эмитим значение в SearchService (получилось бесполезное действие, как и весь сервис SearchService)
-    this.searchService.searchValue(query);
-    //this.router.navigate(['/catalog']);
+    this.searchService.searchValue(searchValue);
+    // this.router.navigate(['/catalog']);
 
 
-    // Переходим на страницу каталога
-    this.router.navigate(['/catalog'], {queryParams: {search: query}});
+    // Переходим на страницу каталога(для варианта query-парамтерами)
+    this.router.navigate(['/catalog'], {queryParams: {search: searchValue}});
 
   }
 }

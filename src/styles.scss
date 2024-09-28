@@ -1,3 +1,4 @@
+
 /*Обнуление*/
 *{padding: 0;margin: 0;border: 0; scroll-behavior: smooth; cursor: default}
 *,*:before,*:after{-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
@@ -40,3 +41,6 @@ footer-component {
 }
 
 
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';

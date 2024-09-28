@@ -7,6 +7,10 @@ import {LoaderComponent} from "./components/loader/loader.component";
 import {SearchComponent} from "./components/search/search.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
+import {AccordionComponent} from "./components/accordion/accordion.component";
+import {NgbAccordionModule, NgbCarouselModule, NgbModalModule} from "@ng-bootstrap/ng-bootstrap";
+import {PopupComponent} from "./components/popup/popup.component";
+import {SliderComponent} from "./components/slider/slider.component";
 
 
 
@@ -16,19 +20,28 @@ import {RouterModule} from "@angular/router";
     HeaderComponent,
     ProductCardComponent,
     LoaderComponent,
-    SearchComponent
+    SearchComponent,
+    AccordionComponent,
+    PopupComponent,
+    SliderComponent
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
     ProductCardComponent,
     LoaderComponent,
-    SearchComponent
+    SearchComponent,
+    AccordionComponent,
+    PopupComponent,
+    SliderComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule
-  ]
+    RouterModule,
+    NgbAccordionModule,
+    NgbModalModule,
+    NgbCarouselModule
+  ],
 })
 export class SharedModule { }

@@ -26,10 +26,40 @@ export class CatalogComponent implements OnDestroy, OnInit {
 
   ngOnInit() {
 
-    //Подписываемся на изменения поискового запроса
+
     this.isLoader = true;//включаем лоадер
 
-        //ПОДПИСКА ПОЧЕМУ ТО НЕ СРАБАТЫВАЕТ НЕМОГУ РАЗОБРАТЬСЯ
+    //подписываемся на query-параметры(1-вариант)
+    this.subscriptionQueryParams = this.activatedRoute.queryParams.subscribe({
+      next: (queryParams: Params) => {
+        console.log(queryParams)
+        let searchValue: string = '';
+        if (queryParams['search']) {
+          //находим и присваиваем переданое значение searchValue через query-параметры
+          searchValue = queryParams['search'];
+        }
+
+        //работаем с полученным значением searchValue
+        this.title = searchValue ? `Результаты поиска по запросу "${searchValue}"` : `Наши чайные коллекции`;
+        this.productsService.getProducts(searchValue).pipe(
+          tap(()=> {
+            this.isLoader = false;//выключаем лоадер
+          })
+        ).subscribe({
+          next: (teaProducts)=> {
+            this.products = teaProducts;
+          },
+          error: (error)=> {
+            alert("Возникла ошибка при получении продуктов c сервера вы будете направлены на главную страницу");
+            console.log(error.message);
+            this.router.navigate(['/']);
+          }
+        });
+      }
+    });
+
+    //Подписываемся на изменения поискового запроса(2-вариант не работает)
+    //ПОДПИСКА ПОЧЕМУ ТО НЕ СРАБАТЫВАЕТ НЕМОГУ РАЗОБРАТЬСЯ
     // this.searchService.searchSubject.subscribe({
     //   next: (searchValue: string) => {
     //
@@ -59,46 +89,12 @@ export class CatalogComponent implements OnDestroy, OnInit {
     //   }
     // })
 
-    // подписываемся на query-параметры
-    this.subscriptionQueryParams = this.activatedRoute.queryParams.subscribe({
-      next: (queryParams: Params) => {
-        console.log(queryParams)
-        let searchValue: string = '';
-        if (queryParams['search']) {
-          //находим и присваиваем переданое значение searchValue через query-параметры
-          searchValue = queryParams['search'];
-        }
-
-        //работаем с полученным значением searchValue
-        this.title = searchValue ? `Результаты поиска по запросу "${searchValue}"` : `Наши чайные коллекции`;
-        this.productsService.getProducts(searchValue).pipe(
-          tap(()=> {
-            this.isLoader = false;//выключаем лоадер
-          })
-        ).subscribe({
-          next: (teaProducts)=> {
-            this.products = teaProducts;
-          },
-          error: (error)=> {
-            alert("Возникла ошибка при получении продуктов c сервера вы будете направлены на главную страницу");
-            console.log(error.message);
-            this.router.navigate(['/']);
-          }
-        });
-      }
-    });
   }
 
   ngOnDestroy() {
-    if (this.subscriptionSearchSubject) {
-      this.subscriptionSearchSubject.unsubscribe();
-    }
-    if (this.subscriptionForProductsTea) {
-      this.subscriptionForProductsTea.unsubscribe();
-    }
-    if (this.subscriptionQueryParams) {
-      this.subscriptionQueryParams.unsubscribe()
-    }
+    this.subscriptionSearchSubject?.unsubscribe();
+    this.subscriptionForProductsTea?.unsubscribe();
+    this.subscriptionQueryParams?.unsubscribe();
   }
 
 }
