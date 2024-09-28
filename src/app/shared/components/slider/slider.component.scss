@@ -1,0 +1,12 @@
+.carousel-control-next-icon, .carousel-control-prev-icon {
+  cursor: pointer;
+  transform: scale(1.5);
+}
+
+.carousel-control-next-icon {
+  background-image: url("../../../../assets/images/icons/next.svg");
+}
+
+.carousel-control-prev-icon {
+  background-image: url("../../../../assets/images/icons/prev.svg");
+}
